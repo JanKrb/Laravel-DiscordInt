@@ -49,7 +49,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('roles/{roleid}/permissions', ['as' => 'roles.perms.delete', 'uses' => 'App\Http\Controllers\RoleController@deletePermissions']);
 
     // Discord
-    Route::get('{provider}/login', ['as' => 'provider.login', 'uses' => 'App\Http\Controllers\SocialiteController@login']);
+
+    Route::get('{provider}/auth', ['as' => 'provider.login', 'uses' => 'App\Http\Controllers\SocialiteController@auth']);
     Route::get('{provider}/unauth', ['as' => 'provider.unauth', 'uses' => 'App\Http\Controllers\SocialiteController@unauth']);
     Route::get('{provider}/callback', ['as' => 'provider.callback', 'uses' => 'App\Http\Controllers\SocialiteController@callback']);
 });
