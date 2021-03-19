@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PermissionAddRequest;
 use App\Http\Requests\PermissionDeleteRequest;
 use App\Http\Requests\PermissionEditRequest;
-use App\Http\Requests\ProjectTaskAnswerRequest;
+use App\Http\Requests\RoleAddRequest;
 use App\Http\Requests\RoleDeleteRequest;
 use App\Http\Requests\RoleEditRequest;
 use App\Models\Role;
@@ -57,11 +57,11 @@ class RoleController extends Controller
     }
 
     /**
-     * @param ProjectTaskAnswerRequest $request
+     * @param RoleAddRequest $request
      * @param $roleid
      * @return Application|Factory|View
      */
-    public function addRole(ProjectTaskAnswerRequest $request) {
+    public function addRole(RoleAddRequest $request) {
         if (!auth()->user()->hasPermission('i_roles_create')) {
             abort(403);
         }

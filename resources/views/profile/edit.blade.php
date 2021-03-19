@@ -148,6 +148,14 @@
                             </div>
                         </form>
                         <hr class="my-4" />
+
+                        @if(auth()->user()->discord_id == null)
+                            <a type="submit" href="{{ route('provider.login', ['provider' => 'discord']) }}" class="btn btn-dark mt-4">{{ __('Link Discord') }}</a>
+                        @else
+                            <a type="submit" href="{{ route('provider.unauth', ['provider' => 'discord']) }}" class="btn btn-dark mt-4">{{ __('Unlink Discord') }}</a>
+                        @endif
+
+                        <hr class="my-4" />
                         <form method="post" action="{{ route('profile.password') }}" autocomplete="off">
                             @csrf
 

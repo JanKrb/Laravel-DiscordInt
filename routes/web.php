@@ -48,24 +48,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::patch('roles/{roleid}/permissions', ['as' => 'roles.perms.edit', 'uses' => 'App\Http\Controllers\RoleController@editPermissions']);
     Route::delete('roles/{roleid}/permissions', ['as' => 'roles.perms.delete', 'uses' => 'App\Http\Controllers\RoleController@deletePermissions']);
 
-    // Projects
-    Route::get('projects', ['as' => 'projects.view', 'uses' => 'App\Http\Controllers\ProjectController@view']);
-    Route::put('projects', ['as' => 'projects.create', 'uses' => 'App\Http\Controllers\ProjectController@createProject']);
-    Route::patch('projects', ['as' => 'projects.edit', 'uses' => 'App\Http\Controllers\ProjectController@editProject']);
-    Route::delete('projects', ['as' => 'projects.delete', 'uses' => 'App\Http\Controllers\ProjectController@deleteProject']);
-
-    Route::get('project/{projectid}', ['as' => 'project.view', 'uses' => 'App\Http\Controllers\ProjectController@viewDetails']);
-    Route::put('project/{projectid}/leader', ['as' => 'project.leader.add', 'uses' => 'App\Http\Controllers\ProjectController@addLeader']);
-    Route::delete('project/{projectid}/leader', ['as' => 'project.leader.delete', 'uses' => 'App\Http\Controllers\ProjectController@deleteLeader']);
-    Route::put('project/{projectid}/participant', ['as' => 'project.participant.add', 'uses' => 'App\Http\Controllers\ProjectController@addParticipant']);
-    Route::delete('project/{projectid}/participant', ['as' => 'project.participant.delete', 'uses' => 'App\Http\Controllers\ProjectController@deleteParticipant']);
-    Route::get('project/{projectid}/list', ['as' => 'project.view.list', 'uses' => 'App\Http\Controllers\BoardController@viewList']);
-    Route::get('project/{projectid}/kanban', ['as' => 'project.view.kanban', 'uses' => 'App\Http\Controllers\BoardController@viewKanban']);
-    Route::get('project/{projectid}/detail/{taskid}', ['as' => 'project.view.details', 'uses' => 'App\Http\Controllers\BoardController@viewDetail']);
-    Route::put('project/{projectid}/detail/{taskid}', ['as' => 'project.view.answer', 'uses' => 'App\Http\Controllers\BoardController@answerTask']);
-    Route::put('project/{projectid}/detail/{taskid}/participant', ['as' => 'project.task.addParticipant', 'uses' => 'App\Http\Controllers\BoardController@addParticipant']);
-    Route::delete('project/{projectid}/detail/{taskid}/participant', ['as' => 'project.task.deleteParticipant', 'uses' => 'App\Http\Controllers\BoardController@deleteParticipant']);
-    Route::patch('project/{projectid}/detail/{taskid}/tags', ['as' => 'project.task.updateStatus', 'uses' => 'App\Http\Controllers\BoardController@updateStatus']);
+    // Discord
+    Route::get('{provider}/login', ['as' => 'provider.login', 'uses' => 'App\Http\Controllers\SocialiteController@login']);
+    Route::get('{provider}/unauth', ['as' => 'provider.unauth', 'uses' => 'App\Http\Controllers\SocialiteController@unauth']);
+    Route::get('{provider}/callback', ['as' => 'provider.callback', 'uses' => 'App\Http\Controllers\SocialiteController@callback']);
 });
 
 /* Impress & Privacy */

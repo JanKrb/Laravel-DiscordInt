@@ -16,6 +16,7 @@ class UsersTableSeeder extends Seeder
     {
         if (DB::table('users')->count() <= 0) {
             DB::table('users')->insert([
+                'discord_id' => 0,
                 'name' => 'Admin Admin',
                 'email' => 'admin@admin.com',
                 'email_verified_at' => now(),

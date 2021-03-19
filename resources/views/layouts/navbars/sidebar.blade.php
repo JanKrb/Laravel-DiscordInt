@@ -81,12 +81,6 @@
                     </a>
                 </li>
                 @endif
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('projects.view') }}">
-                        <i class="fas fa-tasks text-primary"></i> {{ __('Projects') }}
-                    </a>
-                </li>
             </ul>
         </div>
     </div>
