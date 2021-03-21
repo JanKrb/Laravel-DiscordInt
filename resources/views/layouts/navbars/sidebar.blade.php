@@ -81,6 +81,14 @@
                     </a>
                 </li>
                 @endif
+
+                @if(auth()->user()->hasPermission('i_accounts_show'))
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('accounts.view') }}">
+                        <i class="fas fa-list-ul text-primary"></i> {{ __('Accounts') }}
+                    </a>
+                </li>
+                @endif
             </ul>
         </div>
     </div>

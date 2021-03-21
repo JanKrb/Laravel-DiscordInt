@@ -28,8 +28,17 @@ class HomeController extends Controller
             abort(404);
         }
 
-        $userCount = User::count();
+        $allUsers = User::all();
+        $staff = array();
+        foreach ($allUsers as $user) {
+            if ($user->hasPermission('i_show_as_staff')) {
+                $staff[] = $user;
+            }
+        }
 
-        return view('dashboard', compact('userCount'));
+        $data['userCount'] = User::count();
+        $data['staffs'] = $staff;
+
+        return view('dashboard', $data);
     }
 }

@@ -18,6 +18,7 @@ class Role extends Model
      */
     protected $fillable = [
         'name',
-        'color'
+        'color',
+        'discord_id'
     ];
 }

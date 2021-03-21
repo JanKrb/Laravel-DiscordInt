@@ -17,6 +17,7 @@ class CreateRolesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('color');
+            $table->bigInteger('discord_id')->nullable();
             $table->timestamps();
         });
     }

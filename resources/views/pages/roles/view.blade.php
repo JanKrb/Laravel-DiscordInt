@@ -24,6 +24,7 @@
                                 <th scope="col">Role Name</th>
                                 <th scope="col">Color Code</th>
                                 <th scope="col">Member Count</th>
+                                <th scope="col">Linked Role</th>
                                 <th scope="col">Created At</th>
                                 <th scope="col">Updated At</th>
                                 <th scope="col"></th>
@@ -50,6 +51,13 @@
                                         {{ $role->member_count }}
                                     </td>
                                     <td>
+                                        @if($role->discord_id != null)
+                                            Linked
+                                        @else
+                                            Unlinked
+                                        @endif
+                                    </td>
+                                    <td>
                                         {{ date("m/d/y h:i:s", strtotime($role->created_at)) }}
                                     </td>
                                     <td>
@@ -68,7 +76,7 @@
                                                 @endif
 
                                                 @if(auth()->user()->hasPermission('i_roles_edit'))
-                                                <button class="dropdown-item" id="edit_role" data-roleid="{{ $role->id }}" data-prev-name="{{ $role->name }}" data-prev-color="{{ $role->color }}">Edit Role</button>
+                                                <button class="dropdown-item" id="edit_role" data-roleid="{{ $role->id }}" data-prev-name="{{ $role->name }}" data-prev-color="{{ $role->color }} data-prev-discord={{ $role->discord_id }}">Edit Role</button>
                                                 @endif
 
                                                 @if(auth()->user()->hasPermission('i_roles_delete'))
@@ -115,6 +123,13 @@
                                     <input type="color" name="role-color" class="form-control" id="modal-input-color" required>
                                 </div>
                                 <!-- /value -->
+
+                                <!-- discord -->
+                                <div class="form-group">
+                                    <label class="col-form-label" for="modal-input-name">Discord</label>
+                                    <input type="text" name="role-discord" class="form-control" id="modal-input-discord">
+                                </div>
+                                <!-- /discord -->
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -159,6 +174,13 @@
                                     <input type="color" name="role-color" class="form-control" id="modal-input-color_edit" required>
                                 </div>
                                 <!-- /value -->
+
+                                <!-- discord -->
+                                <div class="form-group">
+                                    <label class="col-form-label" for="modal-input-name">Discord</label>
+                                    <input type="text" name="role-discord" class="form-control" id="modal-input-discord_edit" required>
+                                </div>
+                                <!-- /discord -->
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -230,11 +252,13 @@
                 var id = el.data('roleid');
                 var name = el.data('prev-name');
                 var color = el.data('prev-color');
+                var discord = el.data('prev-discord');
 
                 // fill the data in the input fields
                 $("#modal-input-id").val(id);
                 $("#modal-input-name_edit").val(name);
                 $("#modal-input-color_edit").val(color);
+                $("#modal-input-discord_edit").val(discord);
             })
 
             // on modal hide

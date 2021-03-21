@@ -104,86 +104,29 @@
                     <div class="card-body">
                         <!-- List group -->
                         <ul class="list-group list-group-flush list my--3">
+                            @foreach($staffs as $staff)
                             <li class="list-group-item px-0">
                                 <div class="row align-items-center">
                                     <div class="col-auto">
                                         <!-- Avatar -->
                                         <a href="#" class="avatar rounded-circle">
-                                            <img alt="Image placeholder" src="../../assets/img/theme/team-1.jpg">
+                                            <?php if($staff->profile_picture != null): ?>
+                                            <img src="<?php echo e($staff->profile_picture); ?>">
+                                            <?php else: ?>
+                                            <img src="<?php echo e(e(asset('argon'))); ?>/img/theme/team-4-800x800.jpg">
+                                            <?php endif; ?>
                                         </a>
                                     </div>
+
                                     <div class="col ml--2">
                                         <h4 class="mb-0">
-                                            <a href="#!">John Michael</a>
+                                            {{ $staff->name }}
                                         </h4>
-                                        <span class="text-success">●</span>
-                                        <small>Online</small>
-                                    </div>
-                                    <div class="col-auto">
-                                        <button type="button" class="btn btn-sm btn-primary">Add</button>
+                                        <small>{{ $staff->email }}</small>
                                     </div>
                                 </div>
                             </li>
-                            <li class="list-group-item px-0">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <!-- Avatar -->
-                                        <a href="#" class="avatar rounded-circle">
-                                            <img alt="Image placeholder" src="../../assets/img/theme/team-2.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="col ml--2">
-                                        <h4 class="mb-0">
-                                            <a href="#!">Alex Smith</a>
-                                        </h4>
-                                        <span class="text-warning">●</span>
-                                        <small>In a meeting</small>
-                                    </div>
-                                    <div class="col-auto">
-                                        <button type="button" class="btn btn-sm btn-primary">Add</button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item px-0">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <!-- Avatar -->
-                                        <a href="#" class="avatar rounded-circle">
-                                            <img alt="Image placeholder" src="../../assets/img/theme/team-3.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="col ml--2">
-                                        <h4 class="mb-0">
-                                            <a href="#!">Samantha Ivy</a>
-                                        </h4>
-                                        <span class="text-danger">●</span>
-                                        <small>Offline</small>
-                                    </div>
-                                    <div class="col-auto">
-                                        <button type="button" class="btn btn-sm btn-primary">Add</button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item px-0">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <!-- Avatar -->
-                                        <a href="#" class="avatar rounded-circle">
-                                            <img alt="Image placeholder" src="../../assets/img/theme/team-4.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="col ml--2">
-                                        <h4 class="mb-0">
-                                            <a href="#!">John Michael</a>
-                                        </h4>
-                                        <span class="text-success">●</span>
-                                        <small>Online</small>
-                                    </div>
-                                    <div class="col-auto">
-                                        <button type="button" class="btn btn-sm btn-primary">Add</button>
-                                    </div>
-                                </div>
-                            </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

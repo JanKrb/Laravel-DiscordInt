@@ -68,7 +68,8 @@ class RoleController extends Controller
 
         Role::create([
             'name' => $request->input('role-name'),
-            'color' => $request->input('role-color')
+            'color' => $request->input('role-color'),
+            'discord_id' => $request->input('role-discord'),
         ]);
 
         return $this->view();
@@ -87,6 +88,7 @@ class RoleController extends Controller
 
         $role->name = $request->input('role-name');
         $role->color = $request->input('role-color');
+        $role->discord_id = $request->input('role-discord');
         $role->updated_at = now();
 
         $role->save();

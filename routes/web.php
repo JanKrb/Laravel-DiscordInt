@@ -48,6 +48,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::patch('roles/{roleid}/permissions', ['as' => 'roles.perms.edit', 'uses' => 'App\Http\Controllers\RoleController@editPermissions']);
     Route::delete('roles/{roleid}/permissions', ['as' => 'roles.perms.delete', 'uses' => 'App\Http\Controllers\RoleController@deletePermissions']);
 
+    // Account Routes
+
+    Route::get('accounts', ['as' => 'accounts.view', 'uses' => 'App\Http\Controllers\AccountController@view']);
+
     // Discord
 
     Route::get('{provider}/auth', ['as' => 'provider.login', 'uses' => 'App\Http\Controllers\SocialiteController@auth']);

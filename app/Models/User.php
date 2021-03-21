@@ -74,6 +74,10 @@ class User extends Authenticatable
      * @return array|null Permission
      */
     public function getPermissions() {
+        if (auth()->user()->role_id == null) {
+            return array();
+        }
+
         $role = Role::where('id', auth()->user()->role_id)->first();
         return RolePermission::where('role_id', $role['id'])->get();
     }
